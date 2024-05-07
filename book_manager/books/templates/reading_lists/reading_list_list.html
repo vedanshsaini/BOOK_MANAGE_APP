@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Reading Lists</h2>
+
+{% for reading_list in reading_list_list %}
+<div class="card mb-3">
+    <div class="card-header">
+        <h3>{{ reading_list.name }}</h3>
+    </div>
+    <div class="card-body">
+        <ul>
+            {% for book in reading_list.books.all %}
+            <li>
+                {{ book.title }}
+                <form method="post" action="{% url 'remove_book_from_list' reading_list.id book.id %}" style="display: inline-block;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+        <form method="post" action="{% url 'add_book_to_list' reading_list.id %}">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Book ID" name="book_id">
+                <button type="submit" class="btn btn-primary">Add Book</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

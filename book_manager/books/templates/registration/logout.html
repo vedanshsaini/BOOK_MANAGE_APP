@@ -1,0 +1,20 @@
+<!-- logout.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logout</title>
+</head>
+<body>
+    <h2>Logout Successful</h2>
+    <p>You have been logged out.</p>
+    <p>Redirecting to the front page...</p>
+
+    <!-- JavaScript to redirect to the front page after a delay -->
+    <script>
+        setTimeout(function() {
+            window.location.href = "{% url 'index' %}";
+        }, 3000);  // Redirect after 3 seconds (adjust as needed)
+    </script>
+</body>
+</html>
